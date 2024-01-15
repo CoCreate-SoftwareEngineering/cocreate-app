@@ -33,6 +33,7 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 
 # Testing
 Commit test 2
+Adding a new line! :)
 
 **Note: this is a one-way operation. Once you `eject`, you can't go back!**
 
