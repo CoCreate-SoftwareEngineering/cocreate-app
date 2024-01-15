@@ -32,7 +32,7 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 ### `npm run eject`
 
 # Testing
-I changed the readme!
+Final change
 
 **Note: this is a one-way operation. Once you `eject`, you can't go back!**
 
