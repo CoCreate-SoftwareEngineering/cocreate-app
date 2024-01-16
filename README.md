@@ -1,3 +1,6 @@
+# CoCreate App
+Follow tutorial [found here](https://www.youtube.com/watch?v=zxt48qEV3Jk) for information on how to create, develop on, and merge a branch. This will be important for simultaneous development. All steps below are standard express commands used for viewing your website during development. If you have any questions write a message in teams and hopefully someone should see it and be able to help.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
@@ -30,9 +33,6 @@ Your app is ready to be deployed!
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
 ### `npm run eject`
-
-# Testing
-Final change
 
 **Note: this is a one-way operation. Once you `eject`, you can't go back!**
 
