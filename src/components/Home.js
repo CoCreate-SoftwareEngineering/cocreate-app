@@ -1,35 +1,35 @@
 import './Home.css'
-import Container from 'react-bootstrap/Container';
-import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
-import { Form } from 'react-bootstrap';
-import OurNav from './nav.js'
+import OurNav from './Nav.js'
 
 const Home = () => { //Lambda style of return, is more compact and cleaner
     return (
         <div>
             <OurNav />
-            <h1>Testing 1234</h1>
             <div className="content">
         
             <div className="row">
-                <h2>Row 1 Heading</h2>
-                <div className="items-container" id="row1"></div>
+                <h2>Live</h2>
+                <div className="item-container" id="row1">
+                <div class="item">Item 1</div>
+                <div class="item">Item 2</div>
+                <div class="item">Item 3</div>
+                </div>
                 
             </div>
 
             <div className="row">
-                <h2>Row 2 Heading</h2>
+                <h2>Projects</h2>
                 <div className="rectangles" id="row2"></div>
             </div>
 
         
             <div className="row">
-                <h2>Row 3 Heading</h2>
+                <h2>Collaborations</h2>
                 <div className="rectangles" id="row3"></div>
             </div>
 
             </div>
+            <div id="help-button">?</div>
         </div>
     );
 }

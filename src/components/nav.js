@@ -1,32 +1,47 @@
-import { Navbar, Container, Nav, Form, NavDropdown } from 'react-bootstrap';
+
+import { Navbar, Container, Nav, Form, NavDropdown, Button } from 'react-bootstrap';
 import logoImg from '../sources/Co_Create_Logo_blue.png';
 
 const OurNav = () => { //Lambda style of return, is more compact and cleaner
-        return (
+        
+
+    const navbarStyle = {
+        backgroundColor: '#7CC0CB', // Replace with your desired color code
+      };
+    
+    return (
         <>
-        <Navbar className="bg-body-tertiary">
-            <Container>
-              <Navbar.Brand href="#home">
+        <Navbar style={navbarStyle}>
+            <Container className="d-inline-block">
+              <Navbar.Brand href="/">
               <img
                     alt="LOGO"
                     src={logoImg}
                     width="60"
                     height="60"
-                    className="d-inline-block align-top"
+                    className="d-inline-block"
                   />{' '}
               </Navbar.Brand>
-                <Nav className="me-auto">
+                <Nav>
                   <Nav.Link href="#home">
                   <img
-                    alt="PIC"
+                    alt="USERNAME IMG"
                     src="#"
                     width="30"
                     height="30"
-                    className="d-inline-block align-top"
+                    className="d-inline-block"
                   />{' '}
                   Username</Nav.Link>
+                  <img
+                    alt="MSG"
+                    src="#"
+                    width="30"
+                    height="30"
+                    className="d-inline-block"
+                  />{' '}
+                
                 </Nav>
-                <Form className="d-flex">
+                  <Form>
                   <Form.Control
                     type="search"
                     placeholder="Search"
@@ -34,13 +49,6 @@ const OurNav = () => { //Lambda style of return, is more compact and cleaner
                     aria-label="Search"
                   />
                 </Form>
-                <img
-                    alt="MSG"
-                    src="#"
-                    width="30"
-                    height="30"
-                    className="d-inline-block align-top"
-                  />{' '}
             </Container>
           </Navbar>
         </>      
