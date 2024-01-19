@@ -36,3 +36,27 @@
     transform: rotate(360deg);
   }
 }
+
+/* Sign Up Form */
+.signUpForm {
+	background-color: var(--clr-white);
+	width: 50%;
+	padding: 2em;
+	border-radius: 6px;
+	align-self: center;
+	justify-self: center;
+}
+.inputTitle {
+	color: var(--clr-lightBlue);
+	font-size: var(--fs-14);
+}
+
+/* Register Form */
+.register-form-title{
+	padding-bottom:0.5em;
+	text-align:center;
+}
+
+.form-link{
+	margin-left:0.5em;
+}
