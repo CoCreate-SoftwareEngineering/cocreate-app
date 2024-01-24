@@ -1,5 +1,7 @@
 import './Home.css'
 import OurNav from './Nav.js'
+import { Dropdown, DropdownButton } from 'react-bootstrap'
+import ToggleableHeading from './ToggleableHeading.js';
 
 const Home = () => { //Lambda style of return, is more compact and cleaner
     return (
@@ -18,8 +20,9 @@ const Home = () => { //Lambda style of return, is more compact and cleaner
             </div>
 
             <div className="row">
-                <h2>Projects</h2>
-                <div className="rectangles" id="row2"></div>
+                <ToggleableHeading
+                heading = "Projects"
+                rowContent={<div key="1" class="item">Item 3</div>}/>
             </div>
 
         
