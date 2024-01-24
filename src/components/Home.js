@@ -10,7 +10,8 @@ const Home = () => { //Lambda style of return, is more compact and cleaner
             <div className="content">
         
             <div className="row">
-                <h2>Live</h2>
+                <div className="heading-container"><h2>Live</h2><div className="circle"></div>
+                </div>
                 <div className="item-container" id="row1">
                 <div class="item">Item 1</div>
                 <div class="item">Item 2</div>
