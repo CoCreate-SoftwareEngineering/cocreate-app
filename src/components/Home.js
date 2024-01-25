@@ -23,6 +23,7 @@ const Home = () => { //Lambda style of return, is more compact and cleaner
             <div className="row">
                 <ToggleableHeading
                 heading = "Projects"
+                notiAmountCons = {1}
                 rowContent={<div key="1" class="item">Item 3</div>}/>
             </div>
 

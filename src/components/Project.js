@@ -1,7 +1,11 @@
+import OurNav from "./Nav";
+import ToolSidebar from "./ToolSidebar";
+
 const Project = () => { //Lambda style of return, is more compact and cleaner
     return (
         <div>
-            <h1>Project page filler</h1>
+            <OurNav/>
+            <ToolSidebar/>
         </div>
     );
 }

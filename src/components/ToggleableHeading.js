@@ -1,22 +1,35 @@
 import React, { useState } from 'react';
+import './ToggleableHeading.css';
+import NotificationBox from './NotificationBox';
 
-const ToggleableHeading = ({ heading, rowContent }) => {
+const ToggleableHeading = ({ heading, notiAmountCons ,rowContent }) => {
   const [isRowVisible, setIsRowVisible] = useState(true);
+  const [newAmount, setNewAmount] = useState(notiAmountCons);
 
   const toggleRowVisibility = () => {
     setIsRowVisible(!isRowVisible);
+    setNewAmount(newAmount + 1);
+    console.log(newAmount);
   };
 
   return (
+    <>
     <div>
-      <h2>
+      <h2 class = "heading-container">
         {heading}
-        <span onClick={toggleRowVisibility} style={{ cursor: 'pointer' }}>
+        <NotificationBox
+        num = {newAmount}
+        />
+        {/*notiAmount > 0 && 
+        <div class="notifcation-box">{notiAmount}</div>
+  */}
+        <span onClick={toggleRowVisibility} className = 'dropdown-arrow'>
           {isRowVisible ? ' ▼' : ' ▶'}
         </span>
       </h2>
-      {isRowVisible && <div className="row">{rowContent}</div>}
     </div>
+    {isRowVisible && <div className="row">{rowContent}</div>}
+    </>
   );
 };
 
