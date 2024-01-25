@@ -2,6 +2,7 @@
 
 body {
     font-family: 'Inter', sans-serif;
+    font-weight: 200;
     margin: 0;
     padding: 0;
     background-color: #EFE7E7;
@@ -41,6 +42,7 @@ a {
 h2 {
     font-family: 'Inter';
     color: #333;
+    font-weight: 500;
 }
 
 .item-container {
