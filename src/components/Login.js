@@ -7,6 +7,14 @@ const Login = () => { //Lambda style of return, is more compact and cleaner
             <div class="logo-left-container">
                 <img src={logoImg} class="logo"></img>
             </div>
+            <div class="right-container">
+                <p>Login</p><br/>
+                <label>Username</label><br/>
+                <input type="text" placeholder='joebloggs123'></input><br/>
+                <label>Password</label><br/>
+                <input type="password" placeholder='*********'></input><br/>
+                <button type='submit'></button>
+            </div>
         </div>
     );
 }
