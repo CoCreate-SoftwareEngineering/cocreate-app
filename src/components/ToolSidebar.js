@@ -1,20 +1,26 @@
-import { useState } from "react";
-import './ToolSideBar.css';
+import './Project.css';
 
-const ToolSidebar = () => {
-
-    const [isVisible, setVisible] = useState(true);
-
-    const toggleVisibility = () => {
-        setVisible(!isVisible);
-    };
+const ToolSidebar = ({isOpen, children}) => {
 
     return (
-        <div className = "tools-container">
-            {isVisible ? 
-            <button className = "tools-open-button">&lt;</button> 
-            : 
-            "goodbye"}
+        <div className = {`sidebar ${isOpen ? '' : 'closed'}`}>
+            {/*<div className = "sidebar-header">
+                <button>Search</button>
+                <h2>Tools</h2>
+                <button>Settings</button>
+            </div>*/}
+            <h2>Tools</h2>
+            <div className = "tools">
+                <button>Video</button>
+                <button>Start an audio call</button>
+                <button>Draw</button>
+                <button>Create a document</button>
+                <button>Insert an image</button>
+                <button>Record audio</button>
+                <button>Insert audio file</button>
+                <button>Attach file</button>
+                <button>View calendar</button>
+            </div>
         </div>
     );
 };

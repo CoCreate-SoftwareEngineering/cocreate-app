@@ -1,3 +1,4 @@
+
 .tools-container {
     background-color: aquamarine;
     float: right;
@@ -18,4 +19,23 @@
     font-size: 40px;
     font-weight: 800;
     font-family: 'Inter';
+}
+
+.sidebar {
+    background-color: red;
+    float: right;
+    width: 20vw;
+    height: 100vh;
+}
+
+.sidebar.closed {
+    color: white;
+}
+
+.sidebar-header {
+    display: inline;
+    justify-content: center;
+    width: 100%;
+    max-height: 10%;
+    float: top;
 }
