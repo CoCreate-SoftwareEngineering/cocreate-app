@@ -13,7 +13,7 @@ const Login = () => { //Lambda style of return, is more compact and cleaner
                 <input type="text" placeholder='joebloggs123'/><br/>
                 <label>Password</label><br/>
                 <input type="password" placeholder='*********'/><br/>
-                <button type='submit'/>
+                <button type='submit'>Submit</button>
             </div>
         </div>
     );
