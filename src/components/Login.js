@@ -10,10 +10,10 @@ const Login = () => { //Lambda style of return, is more compact and cleaner
             <div class="right-container">
                 <p>Login</p><br/>
                 <label>Username</label><br/>
-                <input type="text" placeholder='joebloggs123'></input><br/>
+                <input type="text" placeholder='joebloggs123'/><br/>
                 <label>Password</label><br/>
-                <input type="password" placeholder='*********'></input><br/>
-                <button type='submit'></button>
+                <input type="password" placeholder='*********'/><br/>
+                <button type='submit'/>
             </div>
         </div>
     );
