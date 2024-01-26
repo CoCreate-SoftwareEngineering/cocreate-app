@@ -15,7 +15,7 @@ html, body {
 }
 
 .right-container{
-    background-color : #EFE7E7;
+    background-color : #2C4251;
 }
 
 label {
@@ -28,7 +28,7 @@ input{
 }
 
 button{
-    background-color: 7CC0CB;
+    background-color: #7CC0CB;
     color: white;
 }
 
