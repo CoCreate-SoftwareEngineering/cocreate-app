@@ -1,7 +1,19 @@
 import './Login.css';
 import logoImg from '../sources/Co_Create_Logo_blue.png';
 
+
+
 const Login = () => { //Lambda style of return, is more compact and cleaner
+
+    let username = 'joebloggs123';
+    let password = 'password1';
+    
+
+    const submit = () => {
+        
+    }
+
+
     return (
         <div class="main-container">
             <div class="logo-left-container">
@@ -14,7 +26,7 @@ const Login = () => { //Lambda style of return, is more compact and cleaner
                 <label>Password</label><br/>
                 <input type="password" placeholder='*********'/><br/>
                 <p>Forgotten password?</p>
-                <button type='submit'>Submit</button>
+                <button type='submit' onClick={submit}>Submit</button>
                 <p>New to CoCreate? Register</p>  
             </div>
         </div>
