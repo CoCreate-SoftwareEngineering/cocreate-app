@@ -32,11 +32,12 @@ p{
     font-size: 30px;
 }
 
-b{
-    color: #E2856E;
+.link{
     font-family:'Inter', sans-serif;
-    font-size: 30px;
     font-weight: bold;
+    color: #E2856E;
+    font-size: 30px;
+    
 }
 
 .right-container{
