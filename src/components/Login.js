@@ -1,11 +1,10 @@
 
 import './Login.css';
 import logoImg from '../sources/Co_Create_Logo_blue.png';
-import {Navigate, Link, useNavigate} from 'react-router-dom';
-import React, {useState} from 'react';
+import { Link, useNavigate} from 'react-router-dom';
+import {useState} from 'react';
 
-const EventEmitter = require('events');
-const emitter = new EventEmitter;
+
 
 
 const Login = () => { //Lambda style of return, is more compact and cleaner
@@ -72,9 +71,9 @@ const Login = () => { //Lambda style of return, is more compact and cleaner
                 <h1>Login</h1><br/>
                 <form>
                 <label>Username</label><br/>
-                <input type="text" class="user" placeholder='joebloggs123' onChange={(e)=>checkUser(e.target.value)}/><br/>
+                <input type="text" class="user" placeholder='joebloggs123' onInput={(e)=>checkUser(e.target.value)}/><br/>
                 <label>Password</label><br/>
-                <input type="password" class="pass"  placeholder='*********' onChange={(e)=>checkPass(e.target.value)}/><br/>
+                <input type="password" class="pass"  placeholder='*********' onInput={(e)=>checkPass(e.target.value)}/><br/>
                 <Link onClick={forgotPassword}><p>Forgotten password?</p></Link>
                 </form>
                 <button type='submit' onClick={submitBtn}>Submit</button>
