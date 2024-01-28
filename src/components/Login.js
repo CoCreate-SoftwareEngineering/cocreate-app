@@ -10,13 +10,16 @@ const emitter = new EventEmitter;
 
 const Login = () => { //Lambda style of return, is more compact and cleaner
 
+    //sets up passwords verification
     const[user, usernameVerify] = useState(false);
     const[pass, passwordVerify] = useState(false);
     const navigate = useNavigate();
 
+    //default username and password
     let username = "joebloggs123";
     let password = "password1";
 
+    //checks username
     function checkUser(e){
         let userNameInput = e;
         if (userNameInput === username){
@@ -27,6 +30,7 @@ const Login = () => { //Lambda style of return, is more compact and cleaner
         }
     }
 
+    //checks password
     function checkPass(e){
         let passWordInput = e;             
         if (passWordInput === password){
@@ -37,6 +41,7 @@ const Login = () => { //Lambda style of return, is more compact and cleaner
         }
     }
 
+    //checks data and redirects to new page
     const submitBtn = () => {
         if(user === true && pass=== true){
             alert("Correct");
@@ -47,10 +52,12 @@ const Login = () => { //Lambda style of return, is more compact and cleaner
         }
     }
 
+    //Forgotten password link
     const forgotPassword = () => {
         alert("Forgotten password!");
     }
 
+    //Sign up link
     const signUp = () => {
         alert("Sign up!");
     }
