@@ -40,7 +40,9 @@ p{
     
 }
 
-
+placeholder{
+    font-style: italic;
+}
 
 .right-container{
     font-family: 'Lato', sans-serif;

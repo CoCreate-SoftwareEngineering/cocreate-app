@@ -47,6 +47,14 @@ const Login = () => { //Lambda style of return, is more compact and cleaner
         }
     }
 
+    const forgotPassword = () => {
+        alert("Forgotten password!");
+    }
+
+    const signUp = () => {
+        alert("Sign up!");
+    }
+
 
     return (
         <div class="main-container">
@@ -60,10 +68,10 @@ const Login = () => { //Lambda style of return, is more compact and cleaner
                 <input type="text" class="user" placeholder='joebloggs123' onChange={(e)=>checkUser(e.target.value)}/><br/>
                 <label>Password</label><br/>
                 <input type="password" class="pass"  placeholder='*********' onChange={(e)=>checkPass(e.target.value)}/><br/>
-                <Link><p>Forgotten password?</p></Link>
+                <Link onClick={forgotPassword}><p>Forgotten password?</p></Link>
                 </form>
                 <button type='submit' onClick={submitBtn}>Submit</button>
-                <p>New to CoCreate? <Link class="link"><b>Register</b></Link></p>
+                <p>New to CoCreate? <Link class="link" onClick={signUp}><b>Register</b></Link></p>
             </div>
         </div>
     );
