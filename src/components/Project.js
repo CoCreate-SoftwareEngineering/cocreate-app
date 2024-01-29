@@ -1,7 +1,7 @@
 import { useState } from "react";
-import OurNav from "./nav.js";
 import ToolSidebar from "./ToolSidebar.js";
 import './Project.css';
+import ProjectNav from "./NavProject.js";
 
 const Project = () => { //Lambda style of return, is more compact and cleaner
 
@@ -13,7 +13,7 @@ const Project = () => { //Lambda style of return, is more compact and cleaner
 
     return (
         <>
-            <OurNav/>
+            <ProjectNav/>
             <button className = "tools-open-button" onClick={handleSidebarClick}>&lt;</button>
             <ToolSidebar
             isOpen={isSidebarOpen}
