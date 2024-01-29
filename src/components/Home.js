@@ -29,8 +29,11 @@ const Home = () => { //Lambda style of return, is more compact and cleaner
 
         
             <div className="row">
-                <h2>Collaborations</h2>
-                <div className="rectangles" id="row3"></div>
+                <ToggleableHeading
+                heading = "Collaborations"
+                notiAmountCons = {0}
+                rowContent={<div key="1" class ="item">Item 4</div>}
+                />
             </div>
 
             </div>

@@ -1,0 +1,56 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@700&family=Lato:wght@700&display=swap');
+
+.tools-container {
+    background-color: aquamarine;
+    float: right;
+    height: 100%;
+}
+
+.tools-open-button {
+    position: fixed;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    cursor: pointer;
+    border-radius: 30px 0px 0px 30px;
+    height: 15vh;
+    width: 2.5vw;
+    background-color: rgb(124, 192, 203);
+    border-width: 0;
+    font-size: 40px;
+    font-weight: 800;
+    font-family: 'Inter';
+}
+
+.sidebar {
+    background-color: rgb(124, 192, 203);
+    float: right;
+    width: 20vw;
+    height: 100vh;
+}
+
+.sidebar.closed {
+    color: white;
+}
+
+.sidebar-header {
+    display: inline;
+    justify-content: center;
+    width: 100%;
+    max-height: 10%;
+    float: top;
+}
+
+.sidebar-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+
+}
+
+.sidebar-title {
+    font-size: 25px;
+    font-family: 'Lato';
+    color: #2C4251;
+}
