@@ -1,5 +1,5 @@
 import { useState } from "react";
-import OurNav from "./Nav";
+import OurNav from "./nav.js";
 import ToolSidebar from "./ToolSidebar.js";
 import './Project.css';
 

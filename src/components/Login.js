@@ -73,10 +73,10 @@ const Login = () => { //Lambda style of return, is more compact and cleaner
                 <label>Username</label><br/>
                 <input type="text" class="user" placeholder='joebloggs123' onInput={(e)=>checkUser(e.target.value)}/><br/>
                 <label>Password</label><br/>
-                <input type="password" class="pass"  placeholder='*********' onInput={(e)=>checkPass(e.target.value)}/><br/>
+                <input className = "login-input" type="password" class="pass"  placeholder='*********' onInput={(e)=>checkPass(e.target.value)}/><br/>
                 <Link onClick={forgotPassword}><p>Forgotten password?</p></Link>
                 </form>
-                <button type='submit' onClick={submitBtn}>Submit</button>
+                <button className = "login-button" type='submit' onClick={submitBtn}>Submit</button>
                 <p>New to CoCreate? <Link class="link" onClick={signUp}><b>Register</b></Link></p>
             </div>
         </div>

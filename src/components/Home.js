@@ -1,5 +1,5 @@
 import './Home.css'
-import OurNav from './Nav.js'
+import OurNav from './nav.js'
 import { Dropdown, DropdownButton } from 'react-bootstrap'
 import ToggleableHeading from './ToggleableHeading.js';
 
