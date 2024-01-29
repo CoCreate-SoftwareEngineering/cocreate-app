@@ -69,7 +69,7 @@ label {
     border: 12px 25px;
 }
 
-input{
+.login-input{
     font-family: 'Lato',sans-serif;
     color:gray;
     background-color: white;
@@ -81,7 +81,7 @@ input{
     margin-right: 25px;
 }
 
-button{
+.login-button{
     font-family: 'Lato',sans-serif;
     background-color: #7CC0CB;
     color: white;

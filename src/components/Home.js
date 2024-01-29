@@ -1,6 +1,5 @@
 import './Home.css'
-import OurNav from './Nav.js'
-import { Dropdown, DropdownButton } from 'react-bootstrap'
+import OurNav from './nav.js'
 import ToggleableHeading from './ToggleableHeading.js';
 
 const Home = () => { //Lambda style of return, is more compact and cleaner
