@@ -27,10 +27,12 @@
     float: right;
     width: 20vw;
     height: 100vh;
+    transition: transform 0.5s ease-in-out;
 }
 
 .sidebar.closed {
     color: white;
+    transform: translateX(500px);
 }
 
 .sidebar-header {
@@ -53,4 +55,32 @@
     font-size: 25px;
     font-family: 'Lato';
     color: #2C4251;
+}
+
+.icon-button-container {
+    text-align: center;
+}
+
+.icon-button-label {
+    font-family: 'Inter';
+    font-weight: 500;
+    color: #FFFFFF;
+}
+
+.icon-button {
+    padding: 0;
+    height: 50px;
+    width: auto;
+    background-color: transparent;
+    border: 0;
+    cursor: pointer;
+}
+
+.icon-button:hover {
+    border-color: white;
+    border: 5px;
+}
+
+.tools {
+    display: flex;
 }

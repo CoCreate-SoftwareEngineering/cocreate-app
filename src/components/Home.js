@@ -1,6 +1,7 @@
 import './Home.css'
 import OurNav from './nav.js'
 import ToggleableHeading from './ToggleableHeading.js';
+import { Link } from 'react-router-dom';
 
 const Home = () => { //Lambda style of return, is more compact and cleaner
     return (
@@ -23,7 +24,9 @@ const Home = () => { //Lambda style of return, is more compact and cleaner
                 <ToggleableHeading
                 heading = "Projects"
                 notiAmountCons = {1}
-                rowContent={<div key="1" class="item">Item 3</div>}/>
+                rowContent={
+                    <Link to="/project"><div key="1" class="item">Item 3</div> </Link>
+                }/>
             </div>
 
         

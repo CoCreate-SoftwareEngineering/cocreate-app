@@ -5,7 +5,7 @@ import ProjectNav from "./NavProject.js";
 
 const Project = () => { //Lambda style of return, is more compact and cleaner
 
-    const [isSidebarOpen, setSidebarOpen] = useState(false);
+    const [isSidebarOpen, setSidebarOpen] = useState(true);
 
     const handleSidebarClick = () => {
         setSidebarOpen(!isSidebarOpen);
@@ -14,7 +14,7 @@ const Project = () => { //Lambda style of return, is more compact and cleaner
     return (
         <>
             <ProjectNav/>
-            <button className = "tools-open-button" onClick={handleSidebarClick}>&lt;</button>
+            <button className = {`tools-open-button ${isSidebarOpen ? 'open' : ''}`} onClick={handleSidebarClick}>&lt;</button>
             <ToolSidebar
             isOpen={isSidebarOpen}
             >
