@@ -63,11 +63,11 @@ const Login = () => { //Lambda style of return, is more compact and cleaner
 
 
     return (
-        <div class="main-container">
-            <div class="logo-left-container">
+        <div className="main-container">
+            <div className="logo-left-container">
                 <img src={logoImg} class="logo"></img>
             </div>
-            <div class="right-container">
+            <div className="right-container">
                 <h1>Login</h1><br/>
                 <form>
                 <label>Username</label><br/>
