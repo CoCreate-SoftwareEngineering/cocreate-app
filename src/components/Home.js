@@ -13,9 +13,9 @@ const Home = () => { //Lambda style of return, is more compact and cleaner
                 <div className="heading-container"><h2>Live</h2><div className="circle"></div>
                 </div>
                 <div className="item-container" id="row1">
-                <div class="item">Item 1</div>
-                <div class="item">Item 2</div>
-                <div class="item">Item 3</div>
+                <div class="item">Example Live Session 1</div>
+                <div class="item">Example Live Session 2</div>
+                <div class="item">Example Live Session 3</div>
                 </div>
                 
             </div>
@@ -25,7 +25,7 @@ const Home = () => { //Lambda style of return, is more compact and cleaner
                 heading = "Projects"
                 notiAmountCons = {1}
                 rowContent={
-                    <Link to="/project"><div key="1" class="item">Item 3</div> </Link>
+                    <Link to="/project"><div key="1" class="item">Example Project 1</div> </Link>
                 }/>
             </div>
 
@@ -34,7 +34,7 @@ const Home = () => { //Lambda style of return, is more compact and cleaner
                 <ToggleableHeading
                 heading = "Collaborations"
                 notiAmountCons = {0}
-                rowContent={<div key="1" class ="item">Item 4</div>}
+                rowContent={<div key="1" class ="item">Example Collaboration 1</div>}
                 />
             </div>
 

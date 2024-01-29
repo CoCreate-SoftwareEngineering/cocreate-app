@@ -29,7 +29,7 @@ const ProjectNav = () => { //Lambda style of return, is more compact and cleaner
               <div>
                 <ul>
                 <li><a href="/"><img src={logoImg} width="50" height="50"></img></a></li>
-                <li><h2 class="ProjectName">Project Name</h2></li>
+                <li><h2 class="ProjectName">Example Project 1</h2></li>
                 </ul>
               </div>
               <div>
