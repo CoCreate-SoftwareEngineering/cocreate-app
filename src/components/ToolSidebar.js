@@ -9,7 +9,11 @@ const ToolSidebar = ({isOpen, children}) => {
                 <h2>Tools</h2>
                 <button>Settings</button>
             </div>*/}
-            <h2>Tools</h2>
+            <div className = "sidebar-top">
+                <button className = "left-button">Left</button>
+                <div className = "sidebar-title">Tools</div>
+                <button className = "right-button">Right</button>
+            </div>
             <div className = "tools">
                 <button>Video</button>
                 <button>Start an audio call</button>
