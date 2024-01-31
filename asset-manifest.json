@@ -1,17 +1,17 @@
 {
   "files": {
     "main.css": "/cocreate-app/static/css/main.ed145e27.css",
-    "main.js": "/cocreate-app/static/js/main.3884b706.js",
+    "main.js": "/cocreate-app/static/js/main.a14e18d0.js",
     "static/media/Co_Create_Logo_blue.png": "/cocreate-app/static/media/Co_Create_Logo_blue.98dcbe45cbc1fa0da9b8.png",
     "static/media/Darwizzy.jpg": "/cocreate-app/static/media/Darwizzy.b6da82d64eec697177c4.jpg",
     "static/media/ProfileImg1.jpg": "/cocreate-app/static/media/ProfileImg1.c8bda4cc0cfdb221b57c.jpg",
     "static/media/Msg_Icon.png": "/cocreate-app/static/media/Msg_Icon.c7925c9b8fd2b3c6fccc.png",
     "index.html": "/cocreate-app/index.html",
     "main.ed145e27.css.map": "/cocreate-app/static/css/main.ed145e27.css.map",
-    "main.3884b706.js.map": "/cocreate-app/static/js/main.3884b706.js.map"
+    "main.a14e18d0.js.map": "/cocreate-app/static/js/main.a14e18d0.js.map"
   },
   "entrypoints": [
     "static/css/main.ed145e27.css",
-    "static/js/main.3884b706.js"
+    "static/js/main.a14e18d0.js"
   ]
 }
