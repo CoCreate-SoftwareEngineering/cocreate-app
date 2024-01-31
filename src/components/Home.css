@@ -76,6 +76,7 @@ h2 {
     bottom: 0;
     left: 0;
     margin: 20px;
+    cursor: pointer;
 }
 
 .circle {
