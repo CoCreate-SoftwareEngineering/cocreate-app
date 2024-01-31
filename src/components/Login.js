@@ -44,7 +44,7 @@ const Login = () => { //Lambda style of return, is more compact and cleaner
     const submitBtn = () => {
         if(user === true && pass=== true){
             alert("Correct");
-            navigate('/');
+            navigate('/home');
         }
         else{
             alert("Incorrect details, please re-enter");

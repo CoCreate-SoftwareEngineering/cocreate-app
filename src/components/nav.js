@@ -15,13 +15,13 @@ const OurNav = () => { //Lambda style of return, is more compact and cleaner
             <div className="Outside">
               <div>
                 <ul>
-                  <li><a href="/"><img src={logoImg} width="50" height="50"></img></a></li>
+                  <li><a href="/home"><img src={logoImg} width="50" height="50"></img></a></li>
                   <li>
-                    <a href="/">
+                    <a href="/home">
                       <img className="ProfilePic" src={profileImg} width="47" height="47"></img>
                     </a>
                   </li>
-                  <li><a href="/"><div className="Username">Username</div></a></li>
+                  <li><a href="/home"><div className="Username">Username</div></a></li>
                 </ul>
               </div>
               <div>
@@ -31,7 +31,7 @@ const OurNav = () => { //Lambda style of return, is more compact and cleaner
                 <ul>
                   <li>
                     <form className="SearchBar">
-                      <input type="search" placeholder="Search" aria-label="Search"></input>
+                      <input className = "nav-input" type="search" placeholder="Search" aria-label="Search"></input>
                     </form>
                   </li>
                   <li>
