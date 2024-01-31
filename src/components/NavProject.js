@@ -5,6 +5,7 @@ import logoImg from '../sources/Co_Create_Logo_blue.png';
 import msgImg from '../sources/Msg_Icon.png';
 import user1 from '../sources/Darwizzy.jpg';
 import user2 from '../sources/ProfileImg1.jpg';
+import { Link } from 'react-router-dom';
 
 
 
@@ -28,7 +29,7 @@ const ProjectNav = () => { //Lambda style of return, is more compact and cleaner
               </div>
               <div>
                 <ul>
-                <li><a href="/home"><img src={logoImg} width="50" height="50"></img></a></li>
+                <li><Link to ="/home"><img src={logoImg} width="50" height="50"></img></Link></li>
                 <li><h2 class="ProjectName">Example Project 1</h2></li>
                 </ul>
               </div>
