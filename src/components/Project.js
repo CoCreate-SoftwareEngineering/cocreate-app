@@ -14,11 +14,13 @@ const Project = () => { //Lambda style of return, is more compact and cleaner
     return (
         <>
             <ProjectNav/>
-            <button className = {`tools-open-button ${isSidebarOpen ? 'open' : ''}`} onClick={handleSidebarClick}>&lt;</button>
-            <ToolSidebar
-            isOpen={isSidebarOpen}
-            >
-            </ToolSidebar>
+            <div className = 'projects-container'>
+                <button className = {`tools-open-button ${isSidebarOpen ? 'open' : ''}`} onClick={handleSidebarClick}>&lt;</button>
+                <span className = "content-span" align="center">Testing 123</span>
+                <ToolSidebar
+                isOpen={isSidebarOpen}
+                />
+            </div>
             </>
     );
 }

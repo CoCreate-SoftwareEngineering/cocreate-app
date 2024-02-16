@@ -63,6 +63,7 @@ body {
 
 .icon-button-container {
     text-align: center;
+    padding: 5px;
 }
 
 .icon-button-label {
@@ -93,4 +94,15 @@ body {
 
 .tools {
     display: flex;
+    flex-wrap: wrap;
+}
+
+.projects-container {
+    display: flex;
+    align-items: center;
+}
+
+.content-span {
+    flex-grow: 1;
+    text-align: center;
 }
