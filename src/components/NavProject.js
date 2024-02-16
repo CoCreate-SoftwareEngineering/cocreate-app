@@ -36,22 +36,22 @@ const ProjectNav = () => { //Lambda style of return, is more compact and cleaner
               <div>
                 <ul>
                   <li>
-                  <div class="dropdown">
-                    <button class="DropBtn">
+                  <div className="dropdown">
+                    <button className="DropBtn">
                       <img src={msgImg} alt="CoCreate" width="50" height="50"></img>
                     </button>
-                    <div class="dropdown-menu MsgGrid dropdown-menu-end">
+                    <div className="dropdown-menu MsgGrid dropdown-menu-end">
                       <div>
-                        <h2 class="DropdownHeader">
+                        <h2 className="DropdownHeader">
                           Messages
-                          <span class="AddSymbols">+ &#x1F4DE; &#128249;</span>
+                          <span className="AddSymbols">+ &#x1F4DE; &#128249;</span>
                         </h2>
-                        <ul class="DropdownLinks">
-                        <li class="Message"><a href="#"><img className="UserPic" src={user1} width="50" height="50"></img></a></li>
-                        <li class="Message"><a href="#"><img className="UserPic" src={user1} width="50" height="50"></img></a></li>
-                        <li class="Message"><a href="#"><img className="UserPic" src={user1} width="50" height="50"></img></a></li>
-                        <li class="Message"><a href="#"><img className="UserPic" src={user1} width="50" height="50"></img></a></li>
-                        <li class="Message"><a href="#"><img className="UserPic" src={user1} width="50" height="50"></img></a></li>
+                        <ul className="DropdownLinks">
+                        <li className="Message"><a href="#"><img className="UserPic" src={user1} width="50" height="50"></img></a></li>
+                        <li className="Message"><a href="#"><img className="UserPic" src={user1} width="50" height="50"></img></a></li>
+                        <li className="Message"><a href="#"><img className="UserPic" src={user1} width="50" height="50"></img></a></li>
+                        <li className="Message"><a href="#"><img className="UserPic" src={user1} width="50" height="50"></img></a></li>
+                        <li className="Message"><a href="#"><img className="UserPic" src={user1} width="50" height="50"></img></a></li>
                         </ul>
                       </div>
                     </div>
