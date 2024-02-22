@@ -2,6 +2,16 @@ import './Home.css'
 import OurNav from './nav.js'
 import ToggleableHeading from './ToggleableHeading.js';
 import { Link } from 'react-router-dom';
+import Help from './HelpButton.js'
+
+
+// data structure to hold projects
+const projects = [
+    { id: 1, name: "Example Project 1", link: "/project" },
+    { id: 2, name: "Example Project 2", link: "/project" },
+    { id: 3, name: "Example Project 3", link: "/project" },
+    { id: 4, name: "Example Project 4", link: "/project" },
+]
 
 const Home = () => { //Lambda style of return, is more compact and cleaner
     return (
@@ -23,9 +33,14 @@ const Home = () => { //Lambda style of return, is more compact and cleaner
             <div className="row">
                 <ToggleableHeading
                 heading = "Projects"
-                notiAmountCons = {1}
+                notiAmountCons = {projects.length} // dynamically set notification amount
                 rowContent={
-                    <Link to="/project"><div key="1" class="item">Example Project 1</div> </Link>
+                    <div className = "projects-container">
+                        {/* add all projects in data structure to projects section */}
+                        {projects.map((project) => 
+                            <Link key={project.id} to={project.link}><div className='item'>{project.name}</div></Link>
+                        )}
+                    </div>
                 }/>
             </div>
 
@@ -39,7 +54,7 @@ const Home = () => { //Lambda style of return, is more compact and cleaner
             </div>
 
             </div>
-            <div id="help-button">?</div>
+            <div><Help/></div>
         </div>
     );
 }
