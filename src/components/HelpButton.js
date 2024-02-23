@@ -18,10 +18,10 @@ const Help = () => {
           <i className="fa fa-bars">?</i>
         </a>
         <menu className="items-wrapper">
-          <a href="#" className="menu-item fa fa-home"></a>
-          <a href="#" className="menu-item fa fa-user"></a>
-          <a href="#" className="menu-item fa fa-pie-chart"></a>
-          <a href="#" className="menu-item fa fa-cog"></a>
+          <a href="#" className="menu-item fa fa-home">faq</a>
+          <a href="#" className="menu-item fa fa-user">github</a>
+          <a href="#" className="menu-item fa fa-pie-chart">email</a>
+          <a href="#" className="menu-item fa fa-cog">settings</a>          
         </menu>
       </div>
     </div>
