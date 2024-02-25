@@ -9,6 +9,13 @@ import Help from './HelpButton.js'
 const projects = [
     { id: 1, name: "Example Project 1", link: "/project" },
     { id: 2, name: "Example Project 2", link: "/project" },
+    { id: 3, name: "Example Project 3", link: "/project" },    
+]
+
+// data structure for live projects
+const lives = [
+    { id: 1, name: "Example Project 1", link: "/project" },
+    { id: 2, name: "Example Project 2", link: "/project" },
     { id: 3, name: "Example Project 3", link: "/project" },
     { id: 4, name: "Example Project 4", link: "/project" },
 ]
@@ -20,13 +27,19 @@ const Home = () => { //Lambda style of return, is more compact and cleaner
             <div className="content">
         
             <div className="row">
-                <div className="heading-container"><h2>Live</h2><div className="circle"></div>
-                </div>
-                <div className="item-container" id="row1">
-                <div class="item">Example Live Session 1</div>
-                <div class="item">Example Live Session 2</div>
-                <div class="item">Example Live Session 3</div>
-                </div>
+                <ToggleableHeading
+                heading= {
+                    <div>
+                        Live <div className = "circle"></div>
+                    </div>
+                }                
+                rowContent={
+                    <div className='lives-container'>
+                        {lives.map((live) =>
+                            <Link key = {live.id} to={live.link}><div className='item'>{live.name}</div></Link>
+                        )}
+                    </div>
+                }/>
                 
             </div>
 
