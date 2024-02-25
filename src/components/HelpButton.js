@@ -15,13 +15,13 @@ const Help = () => {
     <div>            
       <div id="circularMenu" className={`circular-menu circular-menu-left ${isActive ? 'active' : ''}`}>
         <a className="floating-btn" onClick={toggleMenu}>
-          <i className="fa fa-bars">?</i>
+          <i className="help"></i>
         </a>
         <menu className="items-wrapper">
-          <a href="#" className="menu-item fa fa-home">faq</a>
-          <a href="#" className="menu-item fa fa-user">github</a>
-          <a href="#" className="menu-item fa fa-pie-chart">email</a>
-          <a href="#" className="menu-item fa fa-cog">settings</a>          
+          <a href="#" className="menu-item faq">faq</a>
+          <a href="#" className="menu-item github"></a>
+          <a href="#" className="menu-item email"></a>
+          <a href="#" className="menu-item settings"></a>                    
         </menu>
       </div>
     </div>
