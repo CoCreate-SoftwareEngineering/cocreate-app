@@ -30,7 +30,7 @@ const ProjectNav = () => { //Lambda style of return, is more compact and cleaner
               <div>
                 <ul>
                 <li><Link to ="/home"><img src={logoImg} width="50" height="50"></img></Link></li>
-                <li><h2 class="ProjectName">Example Project 1</h2></li>
+                <li><h2 className="ProjectName">Example Project 1</h2></li>
                 </ul>
               </div>
               <div>
