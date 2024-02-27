@@ -29,8 +29,8 @@ FOR EACH live IN lives DO
 END FOR
 
 // Render Projects Row
-FOR EACH project IN projects DO
-  notiAmountCons EQUALS projects.length
+notiAmountCons EQUALS projects.length
+FOR EACH project IN projects DO  
   DISPLAY Link TO project.link WITH TEXT project.name
 END FOR
 
