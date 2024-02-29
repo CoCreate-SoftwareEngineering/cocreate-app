@@ -3,6 +3,7 @@ import OurNav from './nav.js'
 import ToggleableHeading from './ToggleableHeading.js';
 import { Link } from 'react-router-dom';
 import Help from './HelpButton.js'
+import NotificationBox from './NotificationBox.js';
 
 
 // data structure to hold projects
@@ -17,7 +18,7 @@ const lives = [
     { id: 1, name: "Example Project 1", link: "/project" },
     { id: 2, name: "Example Project 2", link: "/project" },
     { id: 3, name: "Example Project 3", link: "/project" },
-    { id: 4, name: "Example Project 4", link: "/project" },
+    { id: 4, name: "Example Project 4", link: "/project" },    
 ]
 
 const Home = () => { //Lambda style of return, is more compact and cleaner
@@ -32,7 +33,7 @@ const Home = () => { //Lambda style of return, is more compact and cleaner
                     <div>
                         Live <div className = "circle"></div>
                     </div>
-                }                
+                }                         
                 rowContent={
                     <div className='lives-container'>
                         {lives.map((live) =>

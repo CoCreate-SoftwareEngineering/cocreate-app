@@ -8,7 +8,7 @@ const ToggleableHeading = ({ heading, notiAmountCons ,rowContent }) => {
 
   const toggleRowVisibility = () => {
     setIsRowVisible(!isRowVisible);
-    setNewAmount(newAmount + 1);
+    // setNewAmount(newAmount + 1);
     console.log(newAmount);
   };
 
@@ -20,7 +20,7 @@ const ToggleableHeading = ({ heading, notiAmountCons ,rowContent }) => {
         <NotificationBox
         num = {newAmount}
         />
-        {/*notiAmount > 0 && 
+        {/* notiAmount > 0 && 
         <div class="notifcation-box">{notiAmount}</div>
   */}
         <span onClick={toggleRowVisibility} className = 'dropdown-arrow'>
