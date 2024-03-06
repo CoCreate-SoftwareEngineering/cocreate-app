@@ -18,7 +18,7 @@ const OurNav = () => { //Lambda style of return, is more compact and cleaner
                 <ul>
                   <li><Link to="/home"><img src={logoImg} width="50" height="50"></img></Link></li>
                   <li>
-                    <Link to="/home">
+                    <Link to="/profile">
                       <img className="ProfilePic" src={profileImg} width="47" height="47"></img>
                     </Link>
                   </li>
