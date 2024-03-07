@@ -1,19 +1,20 @@
 import profileImg from '../sources/Darwizzy.jpg';
 import { Link } from 'react-router-dom'
 import logoImg from '../sources/Co_Create_Logo_blue.png';
+import './Profile.css'
 
 const Profile = () => {
     return(
 
-        <section style={{backgroundColor: '#eee' }}>
-          <div className="container py-5">
+        <section style={{backgroundColor: '#EFE7E7' }}>
+          <div className="container py-5" style={{ maxHeight: '100vh', overflowY: 'auto' }}>
             <div className="row">
               <div className="col">
                 <nav aria-label="breadcrumb" className="bg-light rounded-3 p-3 mb-4">
                   <ol className="breadcrumb mb-0">
                     <li className="breadcrumb-item"><Link to="/home"><img src={logoImg} alt="Home"
                       className="rounded-circle img-fluid" style={{width: '47px'}}></img></Link></li>
-                    <li className="breadcrumb-item active" aria-current="page">User Profile</li>
+                    <li className="breadcrumb-item active inter-font" style={{fontFamily: 'sans-serif' }} aria-current="page">User Profile</li>
                   </ol>
                 </nav>
               </div>
@@ -25,8 +26,8 @@ const Profile = () => {
                   <div className="card-body text-center">
                     <img src={profileImg} alt="avatar"
                       className="rounded-circle img-fluid" style={{width: '150px'}}></img>
-                    <h5 className="my-3">Darwin Nunez</h5>
-                    <p className="text-muted mb-1">Full Stack Developer</p>
+                    <h5 className="my-3 " style={{fontFamily: 'Inter, sans-serif' }}>Darwin Nunez</h5>
+                    <p className="text-muted mb-1" style={{fontFamily: 'Inter, sans-serif' }}>Full Stack Developer</p>
                     <p className="text-muted mb-4"></p>
                     <div className="d-flex justify-content-center mb-2">
                       <button type="button" className="btn btn-primary">Follow</button>
