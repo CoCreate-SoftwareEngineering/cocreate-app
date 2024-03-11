@@ -7,7 +7,7 @@ body {
 .tools-container {
     background-color: aquamarine;
     float: right;
-    height: 100%;
+    height: 100%;    
 }
 
 .tools-open-button {
@@ -24,6 +24,7 @@ body {
     font-size: 40px;
     font-weight: 800;
     font-family: 'Inter';
+    z-index: 2;
 }
 
 .sidebar {
@@ -32,6 +33,7 @@ body {
     width: 20vw;
     height: 100vh;
     transition: transform 0.5s ease-in-out;
+    z-index: 1;
 }
 
 .sidebar.closed {
