@@ -4,6 +4,7 @@ import ToggleableHeading from './ToggleableHeading.js';
 import { Link } from 'react-router-dom';
 import Help from './HelpButton.js'
 import NotificationBox from './NotificationBox.js';
+import EventCalendar from './EventCalendar.js';
 
 
 // data structure to hold projects
@@ -26,8 +27,8 @@ const Home = () => { //Lambda style of return, is more compact and cleaner
         <div>
             <OurNav />
             <div className="content">
-        
-            <div className="row">
+            <span> <EventCalendar EventCalendarProps ={{date:13, title:"asd"}}/></span>
+            <div className="row">                
                 <ToggleableHeading
                 heading= {
                     <div>
@@ -43,7 +44,7 @@ const Home = () => { //Lambda style of return, is more compact and cleaner
                 }/>
                 
             </div>
-
+            
             <div className="row">
                 <ToggleableHeading
                 heading = "Projects"
