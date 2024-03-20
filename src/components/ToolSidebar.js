@@ -1,37 +1,30 @@
 import IconButton from './IconButton';
 import './Project.css';
 
-import attachmentIcon from '../sources/button-images/icon_attachment.png'
-import dateIcon from '../sources/button-images/icon_date.png'
-import docsIcon from '../sources/button-images/icon_google_docs.png'
-import mediaIcon from '../sources/button-images/icon_media_image_.png'
-import micIcon from '../sources/button-images/icon_mic.png'
-import musicIcon from '../sources/button-images/icon_music.png'
-import pencilIcon from '../sources/button-images/icon_pencil.png'
-import phoneIcon from '../sources/button-images/icon_phone_.png'
-import videoIcon from '../sources/button-images/icon_video.png'
-import searchIcon from '../sources/button-images/icon_search.png'
-import settingsIcon from '../sources/button-images/icon_settings.png'
-
 const ToolSidebar = ({isOpen, children}) => {
 
+    
     return (
         <div className = {`sidebar ${isOpen ? '' : 'closed'}`}>
             <div className = "sidebar-top">
-                <IconButton image = {searchIcon}/>
+                <IconButton imagePath = 'icon_search'/>
                 <div className = "sidebar-title">Tools</div>
-                <IconButton image = {settingsIcon}/>
+                <IconButton imagePath = 'icon_settings'/>
             </div>
-            <div className = "tools">
-                <IconButton image = {videoIcon} alt = "Start a video call"/>
-                <IconButton image = {phoneIcon} alt = "Start an audio call"/>
-                <IconButton image = {pencilIcon} alt = "Draw"/>
-                <IconButton image = {docsIcon} alt = "Create a document"/>
-                <IconButton image = {mediaIcon} alt = "Insert an image"/>
-                <IconButton image = {micIcon} alt = "Record audio"/>
-                <IconButton image = {musicIcon} alt = "Insert audio file"/>
-                <IconButton image = {attachmentIcon} alt = "Attach files"/>
-                <IconButton image = {dateIcon} alt = "icon_date"/>
+            {/* alt is the text displayed under the icon
+                icons are stored in sources/button-images
+                just input the file name of the icon minus the .png                
+            */}
+            <div className = "tools">                
+                <IconButton alt="Start a Video Call" imagePath="icon_video"/>
+                <IconButton alt="Start an Audio Call" imagePath="icon_phone_"/>
+                <IconButton alt="Draw" imagePath="icon_pencil"/>
+                <IconButton alt="Create a Document" imagePath="icon_google_docs"/>
+                <IconButton alt="Insert an Image" imagePath="icon_media_image_"/>
+                <IconButton alt="Record Audio" imagePath="icon_mic"/>                
+                <IconButton alt="Insert Audio File" imagePath="icon_music"/>
+                <IconButton alt="Attach Files" imagePath="icon_attachment"/>
+                <IconButton alt = "Date" imagePath = "icon_date"/>
             </div>
         </div>
     );

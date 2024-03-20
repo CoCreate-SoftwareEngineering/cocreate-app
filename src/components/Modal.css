@@ -1,0 +1,41 @@
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 120%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+.textarea-min-size {    
+    min-height: 210px; /* Adjust the size as needed */
+  }
+  
+  
+  .modal-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+  }
+    
+  .form-row {
+    display: flex;
+    align-items: center; /* Aligns items vertically in the center */
+    margin-bottom: 20px; /* Space between rows */
+  }
+  
+  .form-row label {
+    margin-right: 10px; /* Space between label and input */
+  }
+  
+  .form-row input,
+  .form-row textarea {
+    flex-grow: 1; /* Allows input and textarea to fill the available space */
+  }
+    
+button:hover {
+    background-color: orange;
+}

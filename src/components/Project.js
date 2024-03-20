@@ -3,6 +3,7 @@ import ToolSidebar from "./ToolSidebar.js";
 import './Project.css';
 import ProjectNav from "./NavProject.js";
 
+
 const Project = () => { //Lambda style of return, is more compact and cleaner
 
     const [isSidebarOpen, setSidebarOpen] = useState(true);
