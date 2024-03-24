@@ -1,109 +1,86 @@
 import React, { useState, useEffect } from 'react';
-import { ref, listAll, getDownloadURL } from 'firebase/storage';
-import { getAuth, onAuthStateChanged } from 'firebase/auth';
-import { storage } from './FireBase-config';
+import ContentView from './ContentView';
+import FileUpload from './FileUpload';
+import './FilesPage.css'
+import { useLocation } from 'react-router';
 
-
-const FilesList = () => {
+const FilesList = ({ onClose, show }) => {
   const [currentPath, setCurrentPath] = useState('Groups');
-  const [files, setFiles] = useState([]);
-  const [folders, setFolders] = useState([]);
   const [pathStack, setPathStack] = useState([]);
-  const [userLoggedIn, setUserLoggedIn ] = useState(false); // Track if user is logged into fireBase
-  const [loading, setLoading] = useState(false) // buffer so the logic can run before the page displays
+  const [initialPath] = useState('Groups')
+  const [refresh, setRefresh] = useState(false) // state to trigger refresh
+  
+  // get url "gives /project"
+  let location = useLocation();
+  console.log(location.pathname)
+
 
   useEffect(() => {
-    const auth = getAuth();
-    onAuthStateChanged(auth, user => {
-      if (user) {
-        setUserLoggedIn(true);
-        fetchFilesAndFolders(); // Call fetchFilesAndFolders only if user is logged in
-      } else {
-        setUserLoggedIn(false);
-        setFiles([]);
-        setFolders([]);
-      }
-    });
-  }, [currentPath]); // useEffect dependency array
+    // Interval to refresh Modal 
+    const intervalId = setInterval(() => {
+      setRefresh(prev => !prev);
+    }, 120000)
 
-  const fetchFilesAndFolders = async () => {
-    setLoading(true); // Start loading
-    const filesRef = ref(storage, currentPath);
-    try {
-      const response = await listAll(filesRef);
-      const fileUrls = await Promise.all(
-        response.items.map(item =>
-          getDownloadURL(item).then(url => ({ name: item.name, url }))
-        )
-      );
-      setFiles(fileUrls);
-      const folderPaths = response.prefixes.map(prefix => ({
-        name: prefix.name,
-        fullPath: prefix.fullPath
-      }));
-      setFolders(folderPaths);
-    } catch (error) {
-      console.error("Error fetching files and folders:", error);
-    } finally {
-      setLoading(false); // Stop loading regardless of outcome
-    }
-  };
+    // Clean up the interval when component is unmounted or when show changes
+    return () => clearInterval(intervalId)
+  }, [show]);
 
+
+  
+  const refreshContent = () => {
+    setRefresh(prev => !prev); // Toggle the state to trigger a refresh
+  };  
+  
   const navigateIntoFolder = (folderName) => {
-    setPathStack([...pathStack, currentPath]); // Push the current path onto the stack
+    setPathStack(prevStack => [...prevStack, currentPath]);
     setCurrentPath(`${currentPath}/${folderName}`);
   };
 
   const navigateBack = () => {
-    const prevPath = pathStack.pop(); // Pop the last path from the stack
-    setPathStack(pathStack);
-    setCurrentPath(prevPath || 'Groups');
+    const prevPath = pathStack.pop();
+    setPathStack([...pathStack]);
+    setCurrentPath(prevPath || initialPath);
   };
 
-  if (loading) {
-    return <p>Loading...</p> // Placeholder loading message
+  if (!show) {
+    return null;
   }
 
   return (
-    <div>
-      {userLoggedIn ? (
-        <>
-          <h2>Contents of "{currentPath}"</h2>
-          {pathStack.length > 0 && (
-            <button onClick={navigateBack}>Back</button>
-          )}
-          {folders.length > 0 && (
-            <div>
-              <h3>Folders</h3>
-              <ul>
-                {folders.map((folder, index) => (
-                  <li key={index} onClick={() => navigateIntoFolder(folder.name)} style={{ cursor: 'pointer' }}>
-                    {folder.name}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          )}
-          {files.length > 0 && (
-            <div>
-              <h3>Files</h3>
-              <ul>
-                {files.map((file, index) => (
-                  <li key={index}>
-                    <a href={file.url} style={{color: 'black'}} target="_blank" rel="noopener noreferrer">{file.name}</a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          )}
-          {(folders.length === 0 && files.length === 0) && <p>No files or folders to display.</p>}
-        </>
-      ) : (
-        <p>Please log in to view files and folders.</p>
-      )}
+    <div className="modal" onClick={onClose}>
+      <div className="modal-content" onClick={e => e.stopPropagation()}>
+      <div className="modal-header">
+      <div className="header-content"> {/* New wrapper using Flexbox */}
+        <h4 className="modal-title">
+          {currentPath}
+        </h4>
+        <button className='refresh-button' onClick={refreshContent} style={{ marginLeft: '10px', padding: '0 5px'}}>
+          
+        </button>
+        <FileUpload onUploadSuccess={refreshContent} />
+      </div>
+      
     </div>
 
+        <div className="modal-body">
+        <ContentView
+          currentPath={currentPath}
+          navigateIntoFolder={navigateIntoFolder}
+          navigateBack={navigateBack}
+          refreshTrigger={refresh} // Pass the refreshTrigger as a prop
+        />
+        </div>
+        <div className="modal-footer">
+          {currentPath !== 'Groups' && (
+            <button onClick={navigateBack} style={{ marginRight: 'auto' }}>Back</button>
+          )}
+          <button style={{height: '30px', width: '85px', fontSize: '18px'}} onClick={onClose}>Close</button>
+          
+        </div>
+      </div>
+    </div>
   );
 };
+
 
 export default FilesList;

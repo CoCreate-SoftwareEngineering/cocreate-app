@@ -8,11 +8,24 @@ import user2 from '../sources/ProfileImg1.jpg';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import AuthComponent from './FireBase-auth.js';
-import FileUpload from './FileUpload'
+import FilesList from './FilesPage.js';
 
 
 const ProjectNav = () => { //Lambda style of return, is more compact and cleaner
   const [showAuthModal, setShowAuthModal] = useState(false);
+  const [showFilesModal, setShowFilesModal] = useState(false);
+
+  const handleFilesModalShow = () => {
+    console.log("Opening Files Modal");
+    setShowFilesModal(true);
+  };
+  
+  // Debug: Log when modal is being closed to track unexpected triggers
+  const handleFilesModalClose = () => {
+    console.log("Closing Files Modal");
+    setShowFilesModal(false);
+  };
+  
 
   const handleAuthModalClose = () => setShowAuthModal(false);
   const handleAuthModalShow = () => setShowAuthModal(true);
@@ -37,8 +50,11 @@ const ProjectNav = () => { //Lambda style of return, is more compact and cleaner
         
           <button className='authButton' onClick={handleAuthModalShow}>Register</button>
           <AuthComponent show={showAuthModal} onClose={handleAuthModalClose} />
-          <FileUpload>Upload</FileUpload>
-        
+          
+
+          <button style={{maxHeight: '35px', fontSize: '25px'}} onClick={handleFilesModalShow}>Files</button>
+          <FilesList show = {showFilesModal} onClose={handleFilesModalClose} />
+
       </div>
       <div style={{paddingRight: '655px'}}>
         <ul>

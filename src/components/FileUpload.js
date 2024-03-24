@@ -1,21 +1,32 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { ref, uploadBytes } from 'firebase/storage';
-import { storage, auth } from './FireBase-config'; // Ensure this path is correct
+import { storage, auth } from './FireBase-config'; 
+import './FileUpload.css';
 
-const FileUpload = () => {
+
+const FileUpload = ({onUploadSuccess}) => {
     const [file, setFile] = useState(null);
+    const [fileName, setFileName] = useState('Choose file'); // Initialized with 'Choose file'
     const [folderName, setFolderName] = useState(''); // For storing the folder name
+    const fileInputRef = useRef(null);
+
+    const triggerFileInput = () => {
+        fileInputRef.current.click(); // Programmatically clicks the hidden file input
+    };
 
     const handleChange = (e) => {
-        if (e.target.files[0]) {
-            setFile(e.target.files[0]);
+        const files = e.target.files;
+        if (files.length > 0) {
+            setFile(files[0]);
+            setFileName(files[0].name); // Update the state with the new file name
+        } else {
+            setFileName('Choose file'); // Revert to default text if no file is chosen
         }
     };
 
     const handleFolderNameChange = (e) => {
         setFolderName(e.target.value);
     };
-
 
     const createFolder = async () => {
         if (!auth.currentUser) {
@@ -27,13 +38,20 @@ const FileUpload = () => {
             return;
         }
 
-        // Creating a placeholder file to simulate folder creation
         const placeholder = new Blob(["This is a placeholder for folder creation"], {type: 'text/plain'});
-        const folderPath = `files/${folderName.trim()}/.placeholder`; // The .placeholder file within the "folder"
+        // change Groups to update dynamically
+        const folderPath = `Groups/${folderName.trim()}/.placeholder`; // The .placeholder file within the "folder"
 
         try {
             const folderRef = ref(storage, folderPath);
             await uploadBytes(folderRef, placeholder);
+            
+            setTimeout(() => {
+                if (onUploadSuccess) {
+                onUploadSuccess();
+                }
+            }, 1000);
+
             console.log('Folder created successfully');
         } catch (error) {
             console.error('Error creating folder:', error);
@@ -47,13 +65,21 @@ const FileUpload = () => {
         }
 
         if (file) {
-            // Include the folder name in the file path if a folder name has been set
-            const filePath = folderName ? `${folderName}/${file.name}` : file.name;
-            const fileRef = ref(storage, `files/${filePath}`);
+            const filePath = folderName ? `Groups/${folderName}/${file.name}` : `Groups/${file.name}`;
+            const fileRef = ref(storage, filePath);
 
             try {
                 await uploadBytes(fileRef, file);
                 console.log('File uploaded successfully');
+                setFileName('Choose File')
+
+                 // Trigger the refresh after 1 second
+                setTimeout(() => {
+                    if (onUploadSuccess) {
+                    onUploadSuccess();
+                    }
+                }, 1000);
+
             } catch (error) {
                 console.error('Error uploading file:', error);
             }
@@ -61,19 +87,27 @@ const FileUpload = () => {
     };
 
     return (
-        <div>
-            
-            <input type="file" onChange={handleChange} />
-            <button onClick={handleUpload}>Upload File</button>
+        <div className='upload-div'>
+            <div>
+                <input
+                    type="file"
+                    ref={fileInputRef}
+                    onChange={handleChange}
+                    style={{ display: 'none' }} // Hide the actual input
+                />
+                <div className="custom-file-input" onClick={triggerFileInput}>
+                    {fileName} {/* Display "Choose file" or the file name */}
+                </div>
+            </div>
+            <button className='upload-button' onClick={handleUpload}>Upload File</button>
 
             <input
                 type="text"
                 placeholder="Folder Name"
                 value={folderName}
                 onChange={handleFolderNameChange}
-            />
-            <button onClick={createFolder}>Create Folder</button>
-
+            />            
+            <button className='folder-button' onClick={createFolder}>Create Folder</button>
         </div>
     );
 };
