@@ -5,7 +5,8 @@ import { storage, auth } from './FireBase-config';
 import ImageButton from './DeleteButton';
 import './Modal.css';
 
-const ContentView = ({ currentPath, navigateIntoFolder, navigateBack, refreshTrigger }) => {
+
+const ContentView = ({ currentPath, navigateIntoFolder, navigateBack, refreshTrigger, onClickedFilesChange }) => {
     const [files, setFiles] = useState([]);
     const [folders, setFolders] = useState([]);
     const [loading, setLoading] = useState(false);
@@ -34,15 +35,16 @@ const ContentView = ({ currentPath, navigateIntoFolder, navigateBack, refreshTri
 
     const handleFileClick = (filePath) => {
         setClickedFiles(prevFiles => {
-            // Check if the filePath is already in the clickedFiles
             const index = prevFiles.indexOf(filePath);
+            let updatedFiles;
             if (index > -1) {
-                // File is already selected, so remove it from the array                
-                return prevFiles.filter((_, i) => i !== index);
+                updatedFiles = prevFiles.filter((_, i) => i !== index); // Remove item
             } else {
-                // File is not selected, so add it to the array                
-                return [...prevFiles, filePath];
+                updatedFiles = [...prevFiles, filePath]; // Add item
             }
+            // Directly call onClickedFilesChange since it's already destructured from props
+            onClickedFilesChange(updatedFiles);
+            return updatedFiles;
         });
     };
 
@@ -126,7 +128,6 @@ const ContentView = ({ currentPath, navigateIntoFolder, navigateBack, refreshTri
 
     return (
       <>
-
         {folders.map((folder, index) => (
             <div key={index} className='content-folder' onClick={() => navigateIntoFolder(folder.name)} style={{ cursor: 'pointer' }}>
                 
@@ -134,19 +135,27 @@ const ContentView = ({ currentPath, navigateIntoFolder, navigateBack, refreshTri
                 {folder.name}
             </div>            
         ))}
-         {files.map((file, index) => {            
-            const ext = getFileExtension(file.name).toLowerCase();
-            const iconPath = fileIcons[ext] || 'default.png';
-            return (
-                <div key={index} className='content-file'>
-                    <span>
-                        <img src={iconPath} alt={ext} style={{ marginRight: '10px' }}/>
-                        <a href={file.url} target="_blank" rel="noopener noreferrer">{file.name}</a>
-                    </span>                                                                    
-                        <ImageButton onClick={() => handleFileClick(file.url)} />                          
-                </div>
-            );
-        })}
+        {files.filter(file => getFileExtension(file.name).toLowerCase() !== 'placeholder')
+         .map((file, index) => {
+          const ext = getFileExtension(file.name).toLowerCase();
+
+        if(!ext ){            
+            return null;
+        }
+        console.log(ext)
+
+          const iconPath = fileIcons[ext] || 'default.png';
+          return (
+              <div key={index} className='content-file'>
+                  <span>
+                      <img src={iconPath} alt={ext} style={{ marginRight: '10px' }} />
+                      <a href={file.url} target="_blank" rel="noopener noreferrer">{file.name}</a>
+                  </span>
+                  <ImageButton onClick={() => handleFileClick(file.url)} />
+              </div>
+          );
+})}
+
         
       </>
     );

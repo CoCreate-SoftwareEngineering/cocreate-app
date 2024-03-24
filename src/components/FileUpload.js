@@ -1,4 +1,5 @@
 import React, { useState, useRef } from 'react';
+import { useLocation } from 'react-router';
 import { ref, uploadBytes } from 'firebase/storage';
 import { storage, auth } from './FireBase-config'; 
 import './FileUpload.css';
@@ -9,6 +10,8 @@ const FileUpload = ({onUploadSuccess}) => {
     const [fileName, setFileName] = useState('Choose file'); // Initialized with 'Choose file'
     const [folderName, setFolderName] = useState(''); // For storing the folder name
     const fileInputRef = useRef(null);
+    let location = useLocation();
+    const [path] = useState(location.pathname)
 
     const triggerFileInput = () => {
         fileInputRef.current.click(); // Programmatically clicks the hidden file input
@@ -40,7 +43,7 @@ const FileUpload = ({onUploadSuccess}) => {
 
         const placeholder = new Blob(["This is a placeholder for folder creation"], {type: 'text/plain'});
         // change Groups to update dynamically
-        const folderPath = `Groups/${folderName.trim()}/.placeholder`; // The .placeholder file within the "folder"
+        const folderPath = `${path}/${folderName.trim()}/.placeholder`; // The .placeholder file within the "folder"
 
         try {
             const folderRef = ref(storage, folderPath);
@@ -53,6 +56,7 @@ const FileUpload = ({onUploadSuccess}) => {
             }, 1000);
 
             console.log('Folder created successfully');
+            setFolderName("")
         } catch (error) {
             console.error('Error creating folder:', error);
         }
@@ -63,32 +67,32 @@ const FileUpload = ({onUploadSuccess}) => {
             console.log('No user logged in');
             return;
         }
-
+    
         if (file) {
-            const filePath = folderName ? `Groups/${folderName}/${file.name}` : `Groups/${file.name}`;
+            // Always upload the file to the current path, ignoring the folderName input for file uploads
+            const filePath = `${path}/${file.name}`;
             const fileRef = ref(storage, filePath);
-
+    
             try {
                 await uploadBytes(fileRef, file);
                 console.log('File uploaded successfully');
-                setFileName('Choose File')
-
-                 // Trigger the refresh after 1 second
-                setTimeout(() => {
-                    if (onUploadSuccess) {
+                setFileName('Choose File'); // Reset the file name after successful upload
+    
+                 // Optionally trigger the refresh to show the newly uploaded file
+                if (onUploadSuccess) {
                     onUploadSuccess();
-                    }
-                }, 1000);
-
+                }
+    
             } catch (error) {
                 console.error('Error uploading file:', error);
             }
         }
     };
+    
 
     return (
         <div className='upload-div'>
-            <div>
+            
                 <input
                     type="file"
                     ref={fileInputRef}
@@ -98,7 +102,7 @@ const FileUpload = ({onUploadSuccess}) => {
                 <div className="custom-file-input" onClick={triggerFileInput}>
                     {fileName} {/* Display "Choose file" or the file name */}
                 </div>
-            </div>
+            
             <button className='upload-button' onClick={handleUpload}>Upload File</button>
 
             <input

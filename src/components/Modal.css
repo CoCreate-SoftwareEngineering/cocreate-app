@@ -8,6 +8,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    overflow-x: auto;
+    overflow-y: auto;
   }
   
 .textarea-min-size {    
@@ -15,7 +17,7 @@
   }
   
   .modal-content {
-    background-color: white;
+    background-color: #ededed;
     padding: 20px;
     border-radius: 5px;
     width: 80%; 
@@ -72,18 +74,23 @@ button:hover {
   right: 1px;
   border: none  ;
   padding-right: 5px;
+  background-color: #ededed;
 }
 
 .modal-title {
   margin: 0; /* Remove default margins */
   padding-right: 10px;
+  font-family: 'calibri';
+  font-size: 35px;
+  padding-bottom: 35px;
+  padding-right: 55px;
 }
 
 .modal-footer {
   display: flex;
   justify-content: flex-end; /* Aligns items to the left */
   padding-top: 10px;
-  border-top: 1px solid #e5e5e5; /* adds a line above the footer */
+  border-top: 1px solid #ccc; /* adds a line above the footer */
 }
 
 .modal-body {

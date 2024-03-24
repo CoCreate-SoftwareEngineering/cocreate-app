@@ -1,15 +1,17 @@
 .upload-div {
     display: flex;
     align-items: center;
-    justify-content: start; /* Adjust this as needed, `start` aligns items to the start */
-    flex-wrap: nowrap; /* Prevents wrapping, ensuring all items are on a single line */
-    gap: 10px; /* Adds some space between items */
+    justify-content: start;
+    flex-wrap: nowrap;
+    gap: 10px; 
+    padding: 10px; /* Provide some padding around the contents */
+    overflow: hidden; /* Add overflow handling */
   }
   
-  /* Adjust button and input styles if necessary to ensure they fit in a single line */
+  
   .upload-button, .folder-button, .custom-file-input {
     font-size: 12px;
-    padding: 5px 10px;
+    padding: 5px 10px;    
     margin: 0; /* Adjust margins to ensure fit */
     white-space: nowrap; /* Ensures text doesn't wrap */
   }
@@ -26,11 +28,6 @@
     padding: 5px;
     margin: 0 5px; /* Spacing around input fields */    
   }
-
-  input[type="file"] {
-    
-
-  }
   
 
   .custom-file-input {
@@ -42,6 +39,11 @@
     padding: 8px;
     padding-right: 18px;
     padding-left: 18px;
+    display: inline-block; 
+    max-width: 30%; 
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 
   .custom-file-input:hover {
