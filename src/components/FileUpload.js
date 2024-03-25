@@ -5,7 +5,7 @@ import { storage, auth } from './FireBase-config';
 import './FileUpload.css';
 
 
-const FileUpload = ({onUploadSuccess}) => {
+const FileUpload = ({onUploadSuccess, currentPath}) => {
     const [file, setFile] = useState(null);
     const [fileName, setFileName] = useState('Choose file'); // Initialized with 'Choose file'
     const [folderName, setFolderName] = useState(''); // For storing the folder name
@@ -31,37 +31,31 @@ const FileUpload = ({onUploadSuccess}) => {
         setFolderName(e.target.value);
     };
 
+
+
     const createFolder = async () => {
         if (!auth.currentUser) {
-            console.log('No user logged in');
+            console.error('No user logged in');
             return;
         }
-        if (!folderName.trim()) {
+        if (folderName.trim()) {
+            // Construct the full path for folder creation using currentPath
+            const folderPath = `${currentPath}/${folderName}/.placeholder`; 
+            try {
+                await uploadBytes(ref(storage, folderPath), new Blob(["Placeholder for folder creation"], { type: 'text/plain' }));
+                console.log('Folder created successfully');
+                setFolderName(""); // Clear the folder name input field
+                onUploadSuccess && onUploadSuccess();
+            } catch (error) {
+                console.error('Error creating folder:', error);
+            }
+        } else {
             console.log('Folder name is empty');
-            return;
-        }
-
-        const placeholder = new Blob(["This is a placeholder for folder creation"], {type: 'text/plain'});
-        // change Groups to update dynamically
-        const folderPath = `${path}/${folderName.trim()}/.placeholder`; // The .placeholder file within the "folder"
-
-        try {
-            const folderRef = ref(storage, folderPath);
-            await uploadBytes(folderRef, placeholder);
-            
-            setTimeout(() => {
-                if (onUploadSuccess) {
-                onUploadSuccess();
-                }
-            }, 1000);
-
-            console.log('Folder created successfully');
-            setFolderName("")
-        } catch (error) {
-            console.error('Error creating folder:', error);
         }
     };
 
+
+    
     const handleUpload = async () => {
         if (!auth.currentUser) {
             console.log('No user logged in');
@@ -70,7 +64,7 @@ const FileUpload = ({onUploadSuccess}) => {
     
         if (file) {
             // Always upload the file to the current path, ignoring the folderName input for file uploads
-            const filePath = `${path}/${file.name}`;
+            const filePath = `${currentPath}/${folderName ? folderName + '/' : ''}${file.name}`;
             const fileRef = ref(storage, filePath);
     
             try {

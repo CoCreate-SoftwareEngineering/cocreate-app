@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import ContentView from './ContentView';
 import FileUpload from './FileUpload';
 import './FilesPage.css'
@@ -8,7 +8,7 @@ import { ref, deleteObject, listAll, uploadBytes } from 'firebase/storage';
 import { storage, auth } from './FireBase-config'
 
 const FilesList = ({ onClose, show, clickedFiles, onUploadSuccess }) => {
-  const [currentPath, setCurrentPath] = useState('project');
+  const [currentPath, setCurrentPath] = useState('project');  
   const [pathStack, setPathStack] = useState([]);  
   const [refresh, setRefresh] = useState(false) // state to trigger refresh
   const [markedFiles, setMarkedFiles] = useState(false)
@@ -70,31 +70,76 @@ const createGroupFolder = async () => {
     }    
 
     // Interval to refresh Modal 
-    const intervalId = setInterval(() => {
-      setRefresh(prev => !prev);
-    }, 120000)
+    // const intervalId = setInterval(() => {
+    //   setRefresh(prev => !prev);
+    // }, 120000)
 
-    // Clean up the interval when component is unmounted or when show changes
-    return () => clearInterval(intervalId)
+    // // Clean up the interval when component is unmounted or when show changes
+    // return () => clearInterval(intervalId)
 
   }, [show, initialPath, folderExists]);
 
+  
 
-
-  const deleteFiles = async () => {
-    // Loop all files inside array
-    for (const filePath of markedFiles) {
-      const fileRef = ref(storage, filePath) // Create a reference to the file
-      try {
-        await deleteObject(fileRef) // Delete the file
-        console.log(`File deleted: ${filePath}`);
-      } catch(error){
-        console.error(`Error deleting file ${filePath}:`, error);
+  // to delete folders that contain folders 
+  const deleteFilesAndFoldersRecursively = async (folderPath) => {
+    try {
+      const folderRef = ref(storage, folderPath);
+      const listResult = await listAll(folderRef);
+  
+      // Recursively delete files and folders
+      for (const item of listResult.items) {
+        const itemPath = `${folderPath}/${item.name}`;
+        await deleteObject(ref(storage, itemPath));
       }
-      refreshContent(); // refresh the modal
-      setMarkedFiles([]); // Clear the markedFiles list
+  
+      // Recursively delete nested folders
+      for (const prefix of listResult.prefixes) {
+        const nestedFolderPath = `${folderPath}/${prefix.name}`;
+        await deleteFilesAndFoldersRecursively(nestedFolderPath);
+      }
+  
+      // Check if the current folder path still exists after deleting its contents
+      const updatedListResult = await listAll(folderRef);
+      if (updatedListResult.items.length === 0 && updatedListResult.prefixes.length === 0) {
+        // The folder path is empty, so we don't need to delete it explicitly
+        console.log(`Folder ${folderPath} is empty after deleting its contents.`);
+      } else {
+        // There are still items or prefixes in the folder path, so we delete it
+        await deleteObject(folderRef);
+      }
+    } catch (error) {
+      console.error(`Error deleting folder ${folderPath} and its contents:`, error);
     }
-  }
+  };
+  
+
+  // NOTE: don't include files with a '.' in the file name
+  const deleteFiles = async () => {
+    for (const filePath of markedFiles) {
+      if (filePath === undefined) {
+        console.error('Encountered undefined filePath, skipping...');
+        continue; // Skip this iteration of the loop
+      }
+
+      const isFolder = !filePath.includes('.');
+      if (isFolder) {
+        // Get the folder name from the filePath
+        const folderName = filePath.split('/').pop();
+        await deleteFilesAndFoldersRecursively(`${currentPath}/${folderName}`);
+      } else {
+        const fileRef = ref(storage, filePath);
+        try {
+          await deleteObject(fileRef);
+          console.log(`File deleted: ${filePath}`);
+        } catch (error) {
+          console.error(`Error deleting file ${filePath}:`, error);
+        }
+      }
+    }
+    refreshContent();
+    setMarkedFiles([]);
+  };
 
   // give all files marked for deletion
   const handleClickedFilesChange = (updatedClickedFiles) => {
@@ -136,7 +181,7 @@ const createGroupFolder = async () => {
         <button className='refresh-button' onClick={refreshContent} style={{ marginLeft: '10px', padding: '0 5px'}}>
           
         </button>
-        <FileUpload onUploadSuccess={refreshContent} />
+        <FileUpload onUploadSuccess={refreshContent} currentPath={currentPath} />
       </div>
       
     </div>

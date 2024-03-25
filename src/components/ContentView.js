@@ -33,9 +33,9 @@ const ContentView = ({ currentPath, navigateIntoFolder, navigateBack, refreshTri
         };
     }, [currentPath, refreshTrigger]);
 
-    const handleFileClick = (filePath) => {
+    const handleFileClick = (filePath, name) => {
         setClickedFiles(prevFiles => {
-            const index = prevFiles.indexOf(filePath);
+            const index = prevFiles.indexOf(filePath);            
             let updatedFiles;
             if (index > -1) {
                 updatedFiles = prevFiles.filter((_, i) => i !== index); // Remove item
@@ -43,7 +43,8 @@ const ContentView = ({ currentPath, navigateIntoFolder, navigateBack, refreshTri
                 updatedFiles = [...prevFiles, filePath]; // Add item
             }
             // Directly call onClickedFilesChange since it's already destructured from props
-            onClickedFilesChange(updatedFiles);
+            onClickedFilesChange(updatedFiles);    
+            console.log(typeof name === 'object' ? name.fullPath : name.name);       
             return updatedFiles;
         });
     };
@@ -128,21 +129,26 @@ const ContentView = ({ currentPath, navigateIntoFolder, navigateBack, refreshTri
 
     return (
       <>
-        {folders.map((folder, index) => (
-            <div key={index} className='content-folder' onClick={() => navigateIntoFolder(folder.name)} style={{ cursor: 'pointer' }}>
+        {folders.map((folder, index) => (            
+            <div key={`folder-${index}`} className='content-folder' style={{ cursor: 'pointer' }}>                
+                <div onClick={() => navigateIntoFolder(folder.name)}>
+                <span>
+                    <img src="folder.png" alt="Folder" />
+                    {folder.name}
+                </span>
+                </div>                
+                <ImageButton onClick={() => handleFileClick(folder.fullPath, folder)} />
                 
-                <img src="folder.png" alt="Folder" />
-                {folder.name}
             </div>            
-        ))}
+            ))}
+
         {files.filter(file => getFileExtension(file.name).toLowerCase() !== 'placeholder')
          .map((file, index) => {
           const ext = getFileExtension(file.name).toLowerCase();
 
         if(!ext ){            
             return null;
-        }
-        console.log(ext)
+        }        
 
           const iconPath = fileIcons[ext] || 'default.png';
           return (
@@ -151,7 +157,7 @@ const ContentView = ({ currentPath, navigateIntoFolder, navigateBack, refreshTri
                       <img src={iconPath} alt={ext} style={{ marginRight: '10px' }} />
                       <a href={file.url} target="_blank" rel="noopener noreferrer">{file.name}</a>
                   </span>
-                  <ImageButton onClick={() => handleFileClick(file.url)} />
+                  <ImageButton onClick={() => handleFileClick(file.url, file)} />
               </div>
           );
 })}

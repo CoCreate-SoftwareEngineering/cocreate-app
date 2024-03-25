@@ -13,6 +13,8 @@ const AuthComponent = ({ onClose, show }) => {
         try {
             const userCredential = await createUserWithEmailAndPassword(auth, email, password);
             const user = userCredential.user;
+            setEmail("")
+            setPassword("")
             console.log('User registered:', user);
             onClose(); // Close the modal after successful registration
         } catch (error) {
@@ -25,6 +27,8 @@ const AuthComponent = ({ onClose, show }) => {
             const userCredential = await signInWithEmailAndPassword(auth, email, password);
             const user = userCredential.user;
             console.log('User logged in:', user);
+            setEmail("")
+            setPassword("")
             onClose(); // Close the modal after successful login
         } catch (error) {
             console.error('Error logging in:', error.message);
