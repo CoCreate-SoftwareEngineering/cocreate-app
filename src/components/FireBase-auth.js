@@ -1,86 +1,71 @@
 import React, { useState } from 'react';
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from 'firebase/auth';
 import { auth } from './FireBase-config';
-import { signOut } from 'firebase/auth'
-import './Modal.css'
+import './Modal.css';
 
 const AuthComponent = ({ onClose, show }) => {
     const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');    
-     
+    const [password, setPassword] = useState('');
 
-    const handleRegister = async () => {
+    const handleLoginOrCreateAccount = async () => {
         try {
-            const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-            const user = userCredential.user;
-            setEmail("")
-            setPassword("")
-            console.log('User registered:', user);
-            onClose(); // Close the modal after successful registration
-        } catch (error) {
-            console.error('Error registering user:', error.message);
-        }
-    };
-
-    const handleLogin = async () => {
-        try {
+            // Attempt to sign in
             const userCredential = await signInWithEmailAndPassword(auth, email, password);
-            const user = userCredential.user;
-            console.log('User logged in:', user);
-            setEmail("")
-            setPassword("")
-            onClose(); // Close the modal after successful login
+            console.log('User logged in:', userCredential.user);
+            // Reset the form and close the modal on successful login
+            setEmail('');
+            setPassword('');
+            onClose();
         } catch (error) {
-            console.error('Error logging in:', error.message);
-        }
-    }; 
-    
-    const handleLogout = async () => {
-        if (auth.currentUser) { // Check if a user is logged in
-            try {
-                await signOut(auth);
-                console.log("User logged out successfully");
-                onClose(); // Close the modal after successful logout
-            } catch (error) {
-                console.error("Error logging out:", error.message);
+            console.error('Login error:', error.message);
+            // If sign-in fails because the user does not exist, try to register the user
+            if (error.code === 'auth/user-not-found' || error.code === 'auth/invalid-credential') {
+                try {
+                    console.log("hit")
+                    const newUserCredential = await createUserWithEmailAndPassword(auth, email, password);
+                    console.log('New user registered:', newUserCredential.user);
+                    // Reset the form and close the modal on successful registration
+                    setEmail('');
+                    setPassword('');
+                    onClose();
+                } catch (registrationError) {
+                    console.error('Registration error:', registrationError.message);
+                }
             }
-        } else {
-            // If no user is logged in
-            console.log("No user is currently logged in.");
         }
     };
-    
 
-    if(!show){
+    const handleLogout = async () => {
+        try {
+            await signOut(auth);
+            console.log('User logged out successfully');
+            onClose(); // Optionally close the modal on logout
+        } catch (logoutError) {
+            console.error('Logout error:', logoutError.message);
+        }
+    };
+
+    if (!show) {
         return null;
     }
 
     return (
         <div className="modal" onClick={onClose}>
-        <div className="modal-content" onClick={e => e.stopPropagation()} style={{width: '80%'}}>
-          <div className="modal-header">
-            <h4 className="modal-title">Login / Register</h4>
-          </div>
-          <div className="modal-body">
-              <div className="form-row">
-                <label>Email:</label>
-                <input type="email" placeholder="Enter your email" value={email} onChange={(e) => setEmail(e.target.value)} />
-              </div>
-  
-              <div className="form-row">
-                <label>Password:</label>
-                <input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
-              </div>
-  
-              <button type="button" onClick={handleRegister}>Register</button>
-              <button type="button" onClick={handleLogin}>Login</button>
-          </div>
-          <div className="modal-footer">
-            <button onClick={handleLogout}>Logout</button>
-            <button onClick={onClose}>Close</button>
-          </div>
+            <div className="modal-content" onClick={e => e.stopPropagation()}>
+                <div className="modal-header">
+                    <h4 className="modal-title">Login / Register</h4>
+                </div>
+                <div className="modal-body">
+                    <input type="email" placeholder="Enter your email" value={email} onChange={(e) => setEmail(e.target.value)} />
+                    <input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
+                    <button onClick={handleLoginOrCreateAccount}>Login / Register</button>
+                </div>
+                <div className="modal-footer">
+                    <button onClick={handleLogout}>Logout</button>
+                    <button onClick={onClose}>Close</button>
+                </div>
+            </div>
         </div>
-      </div>
     );
 };
 

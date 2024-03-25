@@ -4,6 +4,7 @@ import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { storage, auth } from './FireBase-config';
 import ImageButton from './DeleteButton';
 import './Modal.css';
+import AuthComponent from './FireBase-auth';
 
 
 const ContentView = ({ currentPath, navigateIntoFolder, navigateBack, refreshTrigger, onClickedFilesChange }) => {
@@ -13,6 +14,7 @@ const ContentView = ({ currentPath, navigateIntoFolder, navigateBack, refreshTri
     const [userLoggedIn, setUserLoggedIn] = useState(false);
     const [selectedFileUrl, setSelectedFileUrl] = useState(null); // Track the selected file URL for viewing    
     const [clickedFiles, setClickedFiles] = useState([]) // store files for deletion
+    const [authModal, showAuthModal] = useState(false)
     
 
     useEffect(() => {
@@ -23,8 +25,7 @@ const ContentView = ({ currentPath, navigateIntoFolder, navigateBack, refreshTri
             if (user) {
                 fetchFilesAndFolders();
             } else {
-                setFiles([]);
-                setFolders([]);
+                showAuthModal(true)
             }
         });
 
@@ -124,7 +125,12 @@ const ContentView = ({ currentPath, navigateIntoFolder, navigateBack, refreshTri
     if (loading) {
         return <span className="loader"></span>;
     } else if (!userLoggedIn) {
-        return <p>ToDo: add register/sign in menu to connect user to firebase in this case</p>;
+        return (
+            <>
+                <p>Please log in to view the files.</p>
+                <AuthComponent onClose={() => showAuthModal(false)} show={showAuthModal} />
+            </>
+        )
     }
 
     return (
